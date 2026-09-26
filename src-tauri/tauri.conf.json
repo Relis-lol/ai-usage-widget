@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "AI Usage Widget",
+  "version": "0.1.0",
+  "identifier": "lol.relis.ai-usage-widget",
+  "build": {
+    "frontendDist": "../ui",
+    "beforeDevCommand": "",
+    "beforeBuildCommand": ""
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "AI Usage",
+        "width": 336,
+        "height": 540,
+        "minWidth": 300,
+        "minHeight": 420,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "shortDescription": "Local AI usage at a glance",
+    "longDescription": "A privacy-focused desktop widget that reads usage information from supported local AI provider tooling.",
+    "publisher": "AI Usage Widget contributors",
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser"
+      }
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "android": {
+      "debugApplicationIdSuffix": ".debug"
+    }
+  }
+}

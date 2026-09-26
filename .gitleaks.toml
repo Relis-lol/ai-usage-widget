@@ -1,0 +1,13 @@
+title = "AI Usage Widget gitleaks configuration"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Documentation-only synthetic markers"
+paths = ['''SECURITY\.md''']
+regexes = ['''FAKE_TOKEN_DO_NOT_USE''']
+
+[[allowlists]]
+description = "Ignored compiler output is not repository content"
+paths = ['''src-tauri/target/''']

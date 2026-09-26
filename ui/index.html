@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Usage</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <header data-tauri-drag-region>
+        <div data-tauri-drag-region>
+          <span class="eyebrow" data-tauri-drag-region>LOCAL STATUS</span>
+          <h1 data-tauri-drag-region>AI Usage</h1>
+        </div>
+        <div class="actions">
+          <button id="refresh" type="button" title="Refresh usage" aria-label="Refresh usage">↻</button>
+          <button id="settingsButton" type="button" title="Open settings" aria-label="Open settings">⚙</button>
+        </div>
+      </header>
+      <section id="providers" aria-live="polite"><div class="loading">Reading local provider status…</div></section>
+      <footer><span id="freshness">Not updated</span><span class="privacy">Local only</span></footer>
+    </main>
+
+    <dialog id="settings">
+      <form method="dialog">
+        <h2>Settings</h2>
+        <label>Theme<select id="theme"><option value="system">System</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
+        <label><input id="always" type="checkbox"> Always on top</label>
+        <label><input id="tray" type="checkbox"> Close to tray</label>
+        <label><input id="startup" type="checkbox"> Start with Windows</label>
+        <label>Refresh<select id="interval"><option value="1">1 minute</option><option value="5">5 minutes</option><option value="15">15 minutes</option><option value="30">30 minutes</option></select></label>
+        <fieldset><legend>Providers</legend><label><input id="codex" type="checkbox"> Codex</label><label><input id="claude" type="checkbox"> Claude</label></fieldset>
+        <p class="note">Usage information is processed locally. No analytics or telemetry.</p>
+        <div class="dialog-actions"><button value="cancel">Cancel</button><button id="save" value="default">Save</button></div>
+      </form>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>

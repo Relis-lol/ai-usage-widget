@@ -1,0 +1,49 @@
+# Build output
+/src-tauri/target/
+/target/
+/dist/
+/node_modules/
+*.pdb
+*.dSYM/
+
+# Local configuration and diagnostics
+.env
+.env.*
+!.env.example
+*.log
+logs/
+diagnostics/
+crash-dumps/
+*.dmp
+*.db
+*.sqlite*
+
+# Credentials, certificates, keys, and provider-private data
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+auth.json
+credentials.json
+cookies*
+sessions/
+rollouts/
+*.jsonl
+.codex/
+.claude/
+provider-data/
+local-fixtures/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+docs/screenshot.png
+
+# Packaging secrets and signing material
+*.sig
+signing/
+certificates/

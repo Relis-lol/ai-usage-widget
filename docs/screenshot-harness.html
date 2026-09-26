@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Usage Widget screenshot harness</title>
+    <link rel="stylesheet" href="../ui/styles.css">
+    <style>
+      html { background: #0b0d12; }
+      body { width: 336px; min-height: 540px; }
+      .demo-label { margin-left: 8px; padding: 2px 5px; border: 1px solid #4f596d; border-radius: 5px; color: #aeb6c5; font: 8px "Segoe UI", sans-serif; letter-spacing: .08em; vertical-align: 1px; }
+    </style>
+    <script>
+      const now = Date.now();
+      const demoTheme = new URLSearchParams(location.search).get("theme") || "dark";
+      const snapshots = [
+        { provider: "codex", status: "LIVE", windows: [
+          { display_name: "5 hours", state: "LIVE", used_percent: 27, remaining_percent: 73, resets_at: new Date(now + 2.25 * 3600000).toISOString() },
+          { display_name: "Weekly", state: "LIVE", used_percent: 59, remaining_percent: 41, resets_at: new Date(now + 4.4 * 86400000).toISOString() }
+        ]},
+        { provider: "claude", status: "UNAVAILABLE", windows: [], message: "No supported local usage source detected." }
+      ];
+      window.__TAURI__ = { core: { invoke: async (command) => command === "get_config"
+        ? { theme: demoTheme, always_on_top: false, close_to_tray: true, start_with_windows: false, refresh_minutes: 5, codex_enabled: true, claude_enabled: true }
+        : command === "refresh_usage" ? snapshots : null } };
+    </script>
+  </head>
+  <body>
+    <main>
+      <header><div><span class="eyebrow">LOCAL STATUS</span><span class="demo-label">DEMO DATA</span><h1>AI Usage</h1></div><div class="actions"><button id="refresh" type="button" title="Refresh usage">↻</button><button id="settingsButton" type="button" title="Open settings">⚙</button></div></header>
+      <section id="providers" aria-live="polite"><div class="loading">Loading…</div></section>
+      <footer><span id="freshness">Not updated</span><span class="privacy">Local only</span></footer>
+    </main>
+    <dialog id="settings"><form method="dialog"><h2>Settings</h2><label>Theme<select id="theme"><option value="system">System</option><option value="dark">Dark</option><option value="light">Light</option></select></label><label><input id="always" type="checkbox"> Always on top</label><label><input id="tray" type="checkbox"> Close to tray</label><label><input id="startup" type="checkbox"> Start with Windows</label><label>Refresh<select id="interval"><option value="5">5 minutes</option></select></label><fieldset><legend>Providers</legend><label><input id="codex" type="checkbox"> Codex</label><label><input id="claude" type="checkbox"> Claude</label></fieldset><p class="note">Usage information is processed locally. No analytics or telemetry.</p><div class="dialog-actions"><button value="cancel">Cancel</button><button id="save" value="default">Save</button></div></form></dialog>
+    <script src="../ui/app.js"></script>
+  </body>
+</html>
